@@ -41,7 +41,7 @@ export default function Hero() {
             className="text-display-xl font-bold text-balance text-primary"
           >
             I build fast, scalable web apps that{' '}
-            <span className="relative whitespace-nowrap text-accent-bright">
+            <span className="relative whitespace-normal text-accent-bright md:whitespace-nowrap">
               grow your business
               <motion.span
                 initial={{ scaleX: 0 }}

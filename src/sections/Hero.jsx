@@ -5,7 +5,9 @@ import Button from '../components/ui/Button';
 import ProfileImage from '../components/ui/ProfileImage';
 import ScrollIndicator from '../components/ui/ScrollIndicator';
 import HeroBackground from '../components/common/HeroBackground';
-import { staggerContainer, fadeUp, scaleIn, EASE } from '../lib/motion';
+import { staggerContainer, fadeUp, scaleIn, wordReveal, EASE } from '../lib/motion';
+
+const HEADLINE_WORDS = ['I', 'build', 'fast,', 'scalable', 'web', 'apps', 'that'];
 
 export default function Hero() {
   return (
@@ -35,22 +37,31 @@ export default function Hero() {
             Available for freelance work
           </motion.span>
 
-          {/* headline */}
+          {/* headline — words rise and unblur one by one */}
           <motion.h1
-            variants={fadeUp}
+            variants={staggerContainer(0.06)}
             className="text-display-xl font-bold text-balance text-primary"
           >
-            I build fast, scalable web apps that{' '}
-            <span className="relative whitespace-normal text-accent-bright md:whitespace-nowrap">
+            {HEADLINE_WORDS.map((word, i) => (
+              <motion.span key={i} variants={wordReveal} className="inline-block will-change-transform">
+                {word}&nbsp;
+              </motion.span>
+            ))}
+            <motion.span
+              variants={wordReveal}
+              className="relative inline-block whitespace-normal text-accent-bright md:whitespace-nowrap"
+            >
               grow your business
               <motion.span
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
-                transition={{ delay: 0.9, duration: 0.7, ease: EASE }}
+                transition={{ delay: 1.1, duration: 0.7, ease: EASE }}
                 className="absolute -bottom-1 left-0 h-[3px] w-full origin-left rounded-full bg-gradient-to-r from-accent to-accent-bright/40"
               />
-            </span>
-            .
+            </motion.span>
+            <motion.span variants={wordReveal} className="inline-block">
+              .
+            </motion.span>
           </motion.h1>
 
           {/* sub-headline */}

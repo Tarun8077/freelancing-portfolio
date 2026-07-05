@@ -4,6 +4,7 @@ import { RiDoubleQuotesL } from 'react-icons/ri';
 import { whyReasons, testimonials } from '../data/content';
 import { site } from '../data/site';
 import SectionHeading from '../components/ui/SectionHeading';
+import SpotlightCard from '../components/ui/SpotlightCard';
 import { staggerContainer, fadeUp, viewportOnce } from '../lib/motion';
 
 const icons = [HiOutlineHeart, HiOutlineChatBubbleOvalLeftEllipsis, HiOutlineBolt];
@@ -30,17 +31,17 @@ export default function WhyMe() {
         {whyReasons.map((reason, i) => {
           const Icon = icons[i % icons.length];
           return (
-            <motion.div
+            <SpotlightCard
               key={reason.title}
               variants={fadeUp}
               className="group flex flex-col gap-4 rounded-card border border-border-subtle bg-elevated/60 p-7 transition-all duration-300 ease-premium hover:-translate-y-1 hover:border-accent/50 hover:shadow-glow"
             >
-              <span className="grid h-12 w-12 place-items-center rounded-xl border border-border-subtle bg-white/[0.03] text-secondary transition-all duration-300 ease-premium group-hover:border-accent/40 group-hover:bg-accent/10 group-hover:text-accent-bright">
+              <span className="grid h-12 w-12 place-items-center rounded-xl border border-border-subtle bg-white/[0.03] text-secondary transition-all duration-300 ease-premium group-hover:scale-110 group-hover:border-accent/40 group-hover:bg-accent/10 group-hover:text-accent-bright">
                 <Icon className="text-xl" />
               </span>
               <h3 className="text-lg font-semibold text-primary">{reason.title}</h3>
               <p className="leading-relaxed text-secondary">{reason.description}</p>
-            </motion.div>
+            </SpotlightCard>
           );
         })}
       </motion.div>

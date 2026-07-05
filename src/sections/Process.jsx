@@ -19,9 +19,13 @@ export default function Process() {
         viewport={viewportOnce}
         className="relative mt-16 grid gap-10 lg:grid-cols-4 lg:gap-6"
       >
-        {/* connecting accent line (desktop horizontal) */}
-        <div
-          className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px bg-gradient-to-r from-transparent via-border-subtle to-transparent lg:block"
+        {/* connecting accent line (desktop horizontal) — draws in on scroll */}
+        <motion.div
+          initial={{ scaleX: 0 }}
+          whileInView={{ scaleX: 1 }}
+          viewport={viewportOnce}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="pointer-events-none absolute left-0 right-0 top-6 hidden h-px origin-left bg-gradient-to-r from-transparent via-accent/40 to-transparent lg:block"
           aria-hidden
         />
 
@@ -41,7 +45,9 @@ export default function Process() {
               <span className="relative z-10 grid h-12 w-12 shrink-0 place-items-center rounded-xl border border-border-subtle bg-elevated text-secondary transition-all duration-300 ease-premium group-hover:border-accent/50 group-hover:bg-accent/10 group-hover:text-accent-bright">
                 <Icon className="text-xl" />
               </span>
-              <span className="font-mono text-sm text-muted">{step}</span>
+              <span className="bg-gradient-to-b from-accent-bright to-accent/40 bg-clip-text font-mono text-sm font-semibold text-transparent">
+                {step}
+              </span>
             </div>
 
             <div className="flex flex-col gap-2 lg:pr-4">

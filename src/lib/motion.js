@@ -20,6 +20,17 @@ export const scaleIn = {
   visible: { opacity: 1, scale: 1, transition: { duration: 0.5, ease: EASE } },
 };
 
+// Per-word headline reveal — words rise and unblur inside a staggering parent
+export const wordReveal = {
+  hidden: { opacity: 0, y: '0.5em', filter: 'blur(6px)' },
+  visible: {
+    opacity: 1,
+    y: 0,
+    filter: 'blur(0px)',
+    transition: { duration: 0.55, ease: EASE },
+  },
+};
+
 // Parent that staggers children
 export const staggerContainer = (stagger = 0.08, delay = 0) => ({
   hidden: {},

@@ -2,6 +2,7 @@ import { lazy, Suspense } from 'react';
 import Seo from '../components/common/Seo';
 import { personJsonLd } from '../data/site';
 import Hero from '../sections/Hero';
+import TechMarquee from '../components/ui/TechMarquee';
 import Services from '../sections/Services';
 
 // Below-the-fold sections are code-split and loaded on demand.
@@ -18,6 +19,7 @@ export default function Home() {
     <>
       <Seo jsonLd={personJsonLd} />
       <Hero />
+      <TechMarquee />
       <Services />
       <Suspense fallback={<div className="min-h-screen" aria-hidden />}>
         <Projects />

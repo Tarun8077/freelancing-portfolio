@@ -1,12 +1,13 @@
-import { motion } from 'framer-motion';
 import { fadeUp } from '../../lib/motion';
+import SpotlightCard from './SpotlightCard';
 
 // Bento service card. `featured` cards span two columns on larger screens
 // and carry a slightly richer surface. Hover: lift + blue border ignite +
-// icon brighten.
+// icon brighten + cursor-tracked spotlight.
 export default function ServiceCard({ icon: Icon, title, description, featured = false }) {
   return (
-    <motion.article
+    <SpotlightCard
+      as="article"
       variants={fadeUp}
       className={`group relative flex flex-col gap-4 overflow-hidden rounded-card border border-border-subtle bg-elevated/60 p-6 transition-all duration-300 ease-premium hover:-translate-y-1 hover:border-accent/50 hover:shadow-glow sm:p-7 ${
         featured ? 'lg:col-span-2 lg:p-8' : ''
@@ -21,7 +22,7 @@ export default function ServiceCard({ icon: Icon, title, description, featured =
       )}
 
       <div className="relative flex flex-col gap-4">
-        <span className="grid h-12 w-12 place-items-center rounded-xl border border-border-subtle bg-white/[0.03] text-secondary transition-all duration-300 ease-premium group-hover:border-accent/40 group-hover:bg-accent/10 group-hover:text-accent-bright">
+        <span className="grid h-12 w-12 place-items-center rounded-xl border border-border-subtle bg-white/[0.03] text-secondary transition-all duration-300 ease-premium group-hover:scale-110 group-hover:border-accent/40 group-hover:bg-accent/10 group-hover:text-accent-bright">
           <Icon className={featured ? 'text-2xl' : 'text-xl'} />
         </span>
 
@@ -36,6 +37,6 @@ export default function ServiceCard({ icon: Icon, title, description, featured =
           <p className="max-w-prose leading-relaxed text-secondary">{description}</p>
         </div>
       </div>
-    </motion.article>
+    </SpotlightCard>
   );
 }

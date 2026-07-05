@@ -1,20 +1,44 @@
-import { useState } from 'react';
-import { motion } from 'framer-motion';
+import { useState, useRef } from 'react';
+import { motion, useMotionValue, useSpring, useReducedMotion } from 'framer-motion';
 import { HiArrowUpRight } from 'react-icons/hi2';
 import { FiGithub } from 'react-icons/fi';
 import { fadeUp } from '../../lib/motion';
 
 // Browser-chrome frame with lazy screenshot + branded fallback until the
-// real image lands in public/projects/.
+// real image lands in public/projects/. Tilts gently toward the cursor.
 function BrowserFrame({ project }) {
   const [errored, setErrored] = useState(false);
+  const ref = useRef(null);
+  const reduceMotion = useReducedMotion();
+
+  const rotateX = useSpring(useMotionValue(0), { stiffness: 180, damping: 22 });
+  const rotateY = useSpring(useMotionValue(0), { stiffness: 180, damping: 22 });
+
+  const handleMouseMove = (e) => {
+    if (reduceMotion) return;
+    const rect = ref.current?.getBoundingClientRect();
+    if (!rect) return;
+    const px = (e.clientX - rect.left) / rect.width - 0.5;
+    const py = (e.clientY - rect.top) / rect.height - 0.5;
+    rotateY.set(px * 6);
+    rotateX.set(py * -6);
+  };
+
+  const handleMouseLeave = () => {
+    rotateX.set(0);
+    rotateY.set(0);
+  };
 
   return (
-    <a
+    <motion.a
+      ref={ref}
       href={project.live}
       target="_blank"
       rel="noreferrer"
-      className="group/frame relative block overflow-hidden rounded-card border border-border-subtle bg-elevated shadow-card"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+      style={{ rotateX, rotateY, transformPerspective: 900 }}
+      className="group/frame relative block overflow-hidden rounded-card border border-border-subtle bg-elevated shadow-card will-change-transform"
     >
       {/* ambient accent glow (uses per-project accent) */}
       <div
@@ -64,7 +88,7 @@ function BrowserFrame({ project }) {
           )}
         </div>
       </div>
-    </a>
+    </motion.a>
   );
 }
 

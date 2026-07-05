@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { skillGroups } from '../data/content';
 import SectionHeading from '../components/ui/SectionHeading';
+import SpotlightCard from '../components/ui/SpotlightCard';
 import { staggerContainer, fadeUp, viewportOnce } from '../lib/motion';
 
 export default function Capabilities() {
@@ -20,10 +21,10 @@ export default function Capabilities() {
         className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-4"
       >
         {skillGroups.map((group) => (
-          <motion.div
+          <SpotlightCard
             key={group.label}
             variants={fadeUp}
-            className="group flex flex-col gap-4 rounded-card border border-border-subtle bg-elevated/60 p-6 transition-colors duration-300 ease-premium hover:border-white/15"
+            className="group flex flex-col gap-4 rounded-card border border-border-subtle bg-elevated/60 p-6 transition-colors duration-300 ease-premium hover:border-accent/40"
           >
             <div className="flex items-center gap-2.5">
               <span className="h-1.5 w-1.5 rounded-full bg-accent transition-shadow duration-300 group-hover:shadow-glow" />
@@ -42,7 +43,7 @@ export default function Capabilities() {
                 </li>
               ))}
             </ul>
-          </motion.div>
+          </SpotlightCard>
         ))}
       </motion.div>
     </section>

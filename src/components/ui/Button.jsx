@@ -10,7 +10,7 @@ const sizes = {
 
 const variants = {
   primary:
-    'bg-accent text-white shadow-[0_8px_30px_-8px_rgba(37,99,235,0.7)] hover:bg-accent-soft hover:shadow-glow hover:-translate-y-0.5',
+    'btn-sheen bg-accent text-white shadow-[0_8px_30px_-8px_rgba(37,99,235,0.7)] hover:bg-accent-soft hover:shadow-glow hover:-translate-y-0.5',
   secondary:
     'border border-border-subtle bg-white/[0.02] text-primary hover:border-white/25 hover:bg-white/[0.05]',
   ghost: 'text-secondary hover:text-primary',

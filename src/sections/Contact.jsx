@@ -290,10 +290,10 @@ function Field({ as = 'input', label, name, error, ...props }) {
   const Comp = as;
   const inputId = `contact-${name}`;
   const base =
-    'w-full rounded-btn border bg-base/60 px-4 py-3 text-sm text-primary placeholder:text-muted transition-colors duration-300 focus-visible:outline-none';
+    'w-full rounded-btn border bg-base/60 px-4 py-3 text-sm text-primary placeholder:text-muted transition-all duration-300 focus-visible:outline-none';
   const state = error
-    ? 'border-red-500/60 focus:border-red-500'
-    : 'border-border-subtle focus:border-accent/60';
+    ? 'border-red-500/60 focus:border-red-500 focus:shadow-[0_0_0_3px_rgba(239,68,68,0.12)]'
+    : 'border-border-subtle focus:border-accent/60 focus:shadow-[0_0_0_3px_rgba(37,99,235,0.15)]';
 
   return (
     <div className="flex flex-col gap-1.5">
@@ -330,7 +330,7 @@ function SelectField({ label, name, value, onChange, options, placeholder }) {
         name={name}
         value={value}
         onChange={onChange}
-        className={`w-full rounded-btn border border-border-subtle bg-base/60 px-4 py-3 text-sm transition-colors duration-300 focus-visible:outline-none focus:border-accent/60 ${
+        className={`w-full rounded-btn border border-border-subtle bg-base/60 px-4 py-3 text-sm transition-all duration-300 focus-visible:outline-none focus:border-accent/60 focus:shadow-[0_0_0_3px_rgba(37,99,235,0.15)] ${
           value ? 'text-primary' : 'text-muted'
         }`}
       >
